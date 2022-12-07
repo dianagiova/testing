@@ -4,9 +4,11 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request event
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - second-github-job
   pull_request:
     branches: [ "main" ]
 
@@ -38,7 +40,7 @@ jobs:
   second_job:
     runs-on: ubuntu_latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 
       - run: echo NO VENDOR
       
       #every step must define a `uses` or `run` key
