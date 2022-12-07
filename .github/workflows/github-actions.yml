@@ -34,24 +34,3 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          
-    
-  # Another job called "cache" to test stuff
-  cache:
-    runs-on: ubuntu-latest # uses a Github hosted runner
-    container: gulp:13-composer #need to get this image from gitlab registry, HOW
-    steps:
-      - name: A
-      - uses: actions/checkout@v3
-      - if:  ! -d vendor 
-      - run: composer update
-      - run: echo "running A (if no vendor)"
-
-      - name: B
-      - uses: actions/checkout@v3
-      - if:  ! -d $WP_THEME_PATH/node_modules 
-      - run: cd $WP_THEME_PATH && npm i --progress=false
-      - run: echo "running B (if no node_modules)"
-
-
-      - run: echo "🍏 This job's status is ${{ job.status }}."
