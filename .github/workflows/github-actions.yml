@@ -20,8 +20,6 @@ on:
 env:
   WP_THEME_PATH: web/app/themes/rovio
   TEST_URL: https://rovio.cheron.works
-  PROJECT_NAME: GITHUB_REPOSITORY
-  GITHUB-SHA: GITHUB_SHA
   DAY_OF_WEEK: Thursday
 
 jobs:
@@ -31,8 +29,9 @@ jobs:
     steps:
       - name: "First step"
         run: |
-          echo "So the github-sha is $GITHUB-SHA"
-          echo "So the project name is $PROJECT_NAME"
+          echo "So the github-sha is $GITHUB-SHA and the test-url is: $TEST_URL"
+          echo "So the project name is $GITHUB_REPOSITORY and cache key is $GITHUB_REPOSITORY-$GITHUB_SHA"
+          
 
   greeting_job:
     runs-on: ubuntu-latest
