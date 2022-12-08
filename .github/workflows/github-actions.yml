@@ -17,21 +17,33 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 
+env:
+  WP_THEME_PATH: web/app/themes/rovio
+  TEST_URL: https://rovio.cheron.works
+  PROJECT_NAME: GITHUB_REPOSITORY
+  GITHUB-SHA: GITHUB_SHA
+  DAY_OF_WEEK: Thursday
+
 jobs:
   test_job:
     name: "testing env variables"
     runs-on: ubuntu-latest
-    env:
-        WP_THEME_PATH: web/app/themes/rovio
-        TEST_URL: https://rovio.cheron.works
-        PROJECT_NAME: GITHUB_REPOSITORY
-        GITHUB-SHA: GITHUB_SHA
     steps:
       - name: "First step"
         run: |
           echo "So the github-sha is $GITHUB-SHA"
           echo "So the project name is $PROJECT_NAME"
 
+  greeting_job:
+    runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
+    steps:
+      - name: "Say Hello Mona it's Monday"
+        if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        env:
+          First_Name: Test
 
 #  install_composer:
 #    runs-on: ubuntu-latest
